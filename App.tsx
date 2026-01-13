@@ -4,6 +4,7 @@ import jsPDF from 'jspdf';
 import { InputForm, InternData } from './components/InputForm';
 import { CheatSheet } from './components/CheatSheet';
 import { ExportToolbar } from './components/ExportToolbar';
+import { PasswordGate } from './components/PasswordGate';
 
 const App: React.FC = () => {
   const [isGenerated, setIsGenerated] = useState(false);
@@ -162,28 +163,30 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-900 font-sans print:bg-white">
-      {!isGenerated ? (
-        <InputForm onSubmit={handleSubmit} initialData={data} />
-      ) : (
-        <div className="pt-16 pb-10 flex flex-col items-center print:p-0 print:block">
-          <div className="print:hidden w-full">
-            <ExportToolbar 
-              onBack={() => setIsGenerated(false)} 
-              onDownloadJpg={handleDownloadJpg}
-              onDownloadPdf={handleDownloadPdf}
-              onDownloadWord={handleDownloadWord}
-            />
+    <PasswordGate>
+      <div className="min-h-screen bg-gray-100 text-gray-900 font-sans print:bg-white">
+        {!isGenerated ? (
+          <InputForm onSubmit={handleSubmit} initialData={data} />
+        ) : (
+          <div className="pt-16 pb-10 flex flex-col items-center print:p-0 print:block">
+            <div className="print:hidden w-full">
+              <ExportToolbar
+                onBack={() => setIsGenerated(false)}
+                onDownloadJpg={handleDownloadJpg}
+                onDownloadPdf={handleDownloadPdf}
+                onDownloadWord={handleDownloadWord}
+              />
+            </div>
+            {/* We add p-6 here in the preview container to give visual breathing room,
+                but it won't be in the captured image since ref is on CheatSheet.
+                In print mode, we remove padding to fit page. */}
+            <div className="w-full overflow-x-auto p-6 flex justify-center items-start print:p-0 print:overflow-visible print:block">
+               <CheatSheet ref={sheetRef} data={data} />
+            </div>
           </div>
-          {/* We add p-6 here in the preview container to give visual breathing room, 
-              but it won't be in the captured image since ref is on CheatSheet.
-              In print mode, we remove padding to fit page. */}
-          <div className="w-full overflow-x-auto p-6 flex justify-center items-start print:p-0 print:overflow-visible print:block">
-             <CheatSheet ref={sheetRef} data={data} />
-          </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </PasswordGate>
   );
 };
 
