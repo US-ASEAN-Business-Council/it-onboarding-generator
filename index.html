@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>US-ABC IT Onboarding (Interns)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom font smoothing for that crisp look */
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    /* Force date inputs to use light theme controls (dark icon) */
+    input[type="date"] {
+      color-scheme: light;
+    }
+
+    /* Style the date picker indicator to be more obvious */
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      cursor: pointer;
+      opacity: 1; /* Fully opaque for better visibility */
+      filter: invert(0); /* Ensure it renders as black/dark */
+      font-size: 1.4rem; /* Slightly larger */
+      padding: 4px;
+      margin-left: 8px; /* Space from text */
+    }
+    
+    input[type="date"]::-webkit-calendar-picker-indicator:hover {
+      background-color: #f3f4f6;
+      border-radius: 4px;
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "html-to-image": "https://esm.sh/html-to-image@1.11.11",
+    "jspdf": "https://esm.sh/jspdf@2.5.1"
+  }
+}
+</script>
+</head>
+<body class="bg-gray-100 text-gray-900">
+  <div id="root"></div>
+</body>
+</html>
