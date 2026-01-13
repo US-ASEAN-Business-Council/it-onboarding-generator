@@ -19,7 +19,7 @@ export const CheatSheet = forwardRef<HTMLDivElement, CheatSheetProps>(({ data },
   const isIntern = data.staffType === 'Intern';
 
   // Default Booking QR
-  const defaultQr = "https://api.qrserver.com/v1/create-qr-code/?size=100x100&color=000000&bgcolor=FFFFFF&data=https%3A%2F%2Foutlook.office.com%2Fbook%2FRegionalITTeamBookingTime%40usasean.org%2F%3Fismsaljsauthenabled";
+  const defaultQr = "/QR.png";
   
   // Format Date for display
   const formatDate = (dateStr: string) => {
